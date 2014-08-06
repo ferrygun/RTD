@@ -37,7 +37,7 @@ body {
         }
         function onMessage(evt) {
             console.log(evt.data);
-            updateGauges1(evt.data)
+            updateGauges(evt.data)
             
         }
         function onError(evt) {
@@ -78,36 +78,19 @@ body {
 				createGauge("cpu", "CPU Usage Monitoring");
 			}
 			
-			function updateGauges1(value)
+			function updateGauges(value)
 			{
 				for (var key in gauges)
 				{
 					console.log(value);
 					gauges[key].redraw(value);
 				}
-			}
-			
-			function updateGauges()
-			{
-				for (var key in gauges)
-				{
-					var value = getRandomValue(gauges[key])
-					console.log(value);
-					gauges[key].redraw(value);
-				}
-			}
-			
-			function getRandomValue(gauge)
-			{
-				var overflow = 0; //10;
-				return gauge.config.min - overflow + (gauge.config.max - gauge.config.min + overflow*2) *  Math.random();
 			}
 			
 			function initialize()
 			{
 				createGauges();
 				send_message();
-				//setInterval(updateGauges, 5000);
 			}
 			
 </script>
